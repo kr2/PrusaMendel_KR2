@@ -8,4 +8,5 @@ x-carriage:
 http://www.thingiverse.com/thing:10885
 
 belt tensioner :
+Parametric Prusa Y-axis belt tensioner with ram by triffid_hunter is licensed under the Attribution - Share Alike - Creative Commons license.
 http://www.thingiverse.com/thing:13479

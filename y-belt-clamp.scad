@@ -1,3 +1,5 @@
+//Parametric Prusa Y-axis belt tensioner with ram by triffid_hunter is licensed under the Attribution - Share Alike - Creative Commons license.
+
 belt_pitch = 5;
 belt_width = 5.6;
 belt_height = 3.8;

@@ -95,7 +95,7 @@ geeksbase_mount=512;
  * @id extruder-spring
  */
 
-wade(hotend_mount=groovemount);
+wade(hotend_mount=geeksbase_mount);
 
 translate([-14,39,0])
 bearing_washer();
