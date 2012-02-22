@@ -9,11 +9,10 @@
 
 
 include <configuration.scad>
-basefoot=true;
 
-vertex(with_foot=basefoot);
+vertex_bottom();
 
-%import_stl("frame-vertex.stl");
+//%import_stl("frame-vertex.stl");
 
 //teardrop();
 
@@ -49,19 +48,22 @@ vfvertex_height=threaded_rod_diameter+4.5;
  * @using 8 m8washer
  */
 
-hole_separation=58.5;
-vertex_end_major_d=30.15;
-vertex_end_minor_d=18.5;
-vertex_horizontal_hole_offset=11.75;
+hole_separation=58.5;  // distance between the holes in x dir
+vertex_end_major_d=30.15;  // diameter at the triangle holes
+vertex_end_minor_d=18.5;  // the width of the ovale at the top x dir hole
+vertex_horizontal_hole_offset=11.75; // distance between the x dir holes and the triangle holes
 hole_flat_radius=8.5; // flat surface around holes.
-foot_depth=26.25;
+foot_depth=26.25; // length of the foot
 end_round_translation=vertex_horizontal_hole_offset-hole_flat_radius;
 
+base_angle = 67; // angle at the base of the triangle  //67
 
 
-
-module vertex(with_foot=basefoot)
+module vertex_bottom()
 {
+	peg_offset = [	(cos(base_angle-60)*vertex_end_major_d/2 - sin(base_angle-60)*-hole_flat_radius)-vertex_end_major_d/2,
+					(sin(base_angle-60)*vertex_end_major_d/2 + cos(base_angle-60)*-hole_flat_radius)--hole_flat_radius];
+
 	peg_r=12;
 	peg1=[hole_separation+vertex_end_major_d/2-peg_r,
 		vertex_horizontal_hole_offset+hole_flat_radius];
@@ -86,68 +88,79 @@ module vertex(with_foot=basefoot)
 	a3=[hole_separation-vertex_end_major_d/2+a1_r,-foot_depth+a3_r];
 	a4=[hole_separation+vertex_end_major_d/2-a2_r,-foot_depth+a4_r];
 
+	edge_offset = abs( vertex_end_major_d/2 - (cos(base_angle-60)*vertex_end_major_d/2 - sin(base_angle-60)*hole_flat_radius)); // x dir offset of the rotated box
 //	translate([-hole_separation-vertex_end_major_d/2,-vertex_horizontal_hole_offset,-vfvertex_height/2])
-	translate([-18.5,9,0])
+//	translate([-18.5,9,0])
 	difference ()
 	{
 		union ()
 		{
-			for (hole=[(with_foot?1:0):1])
-			rotate(hole*60)
-			translate([hole_separation,end_round_translation-hole*2*end_round_translation,0])
+			// top end ovall
+			rotate(60)
+			translate([hole_separation,end_round_translation-2*end_round_translation,0])
+			rotate(base_angle - 60) 
 			scale([1,(vertex_end_minor_d+2*end_round_translation)/vertex_end_major_d,1])
-			cylinder(r=vertex_end_major_d/2,h=vfvertex_height); 
+				cylinder(r=vertex_end_major_d/2,h=vfvertex_height); 
 
-			for (block=[0:1])
-			rotate(block*60)
-			translate([hole_separation,
-				vertex_horizontal_hole_offset-block*2*vertex_horizontal_hole_offset,
-				vfvertex_height/2])
-			cube([vertex_end_major_d,
-				2*hole_flat_radius,vfvertex_height],center=true);
+			// block for bootom holes in y dir
+			translate(	[hole_separation,
+						vertex_horizontal_hole_offset, 
+						vfvertex_height/2])
+				cube([vertex_end_major_d, 2*hole_flat_radius,vfvertex_height],center=true);
 
+			// blocks for the triangle screews	
+			rotate(60)
+			translate(	[hole_separation,
+						vertex_horizontal_hole_offset-1*2*vertex_horizontal_hole_offset, 
+						vfvertex_height/2])
+			translate([edge_offset , 0, 0])  rotate(base_angle - 60) 
+				cube([vertex_end_major_d, 2*hole_flat_radius,vfvertex_height],center=true);
+
+			// midpard and foot
 			linear_extrude(height=vfvertex_height)
 			{
 				// The outer curve.
-				barbell(peg1,peg2,peg_r,peg_r,200,30);
+				barbell(peg1,peg2+peg_offset,peg_r,peg_r,200,30);
 				// The inner curve.
-				barbell(peg3,peg4,inner_peg_r,inner_peg_r,20,200);
+				barbell(peg3,peg4+peg_offset,inner_peg_r,inner_peg_r,20,200);
 
-				if (with_foot)
-				{
-					// Curves for the feet
-					barbell(a1,a3,a1_r,a3_r,200,20);
-					barbell(a2,a4,a2_r,a4_r,20,200);
+				// Curves for the feet
+				barbell(a1,a3,a1_r,a3_r,200,20);
+				barbell(a2,a4,a2_r,a4_r,20,200);
 
-					// The flat bit on the bottom of the foot.
-					polygon(points=[a3+[0,-a3_r],a4+[0,-a4_r],(a3+a4)/2+[0,5]],
-						paths=[[0,1,2]]);
-				}
+				// The flat bit on the bottom of the foot.
+				polygon(points=[a3+[0,-a3_r],a4+[0,-a4_r],(a3+a4)/2+[0,5]],
+					paths=[[0,1,2]]);
+				
 			}
 		}
 
+		//x dir holes
 		for (hole=[0:1])
 		rotate(hole*60)
 		translate([hole_separation,0,-1])
-		cylinder(h=vfvertex_height+2,r=(threaded_rod_diameter/2)); 
+			cylinder(h=vfvertex_height+2,r=(threaded_rod_diameter/2)); 
 
-		for (block=[0:1])
-		rotate(block*60)
-		translate([hole_separation-vertex_end_major_d/2-1,
-			vertex_horizontal_hole_offset-2*block*vertex_horizontal_hole_offset,
-			vfvertex_height/2])
-		teardrop(r=threaded_rod_diameter/2,h=vertex_end_major_d+2);
-		if (with_foot){
+		
+		// riangle bootom hole
+		translate(	[hole_separation-vertex_end_major_d/2-1,
+					vertex_horizontal_hole_offset,
+					vfvertex_height/2])
+			teardrop(r=threaded_rod_diameter/2,h=vertex_end_major_d+2);
+
+		//triangle top holes
+		rotate(60)
+		translate(	[hole_separation-vertex_end_major_d/2-1,
+					vertex_horizontal_hole_offset-2*1*vertex_horizontal_hole_offset,
+					vfvertex_height/2]) 
+		translate([edge_offset , 0, 0])  rotate(base_angle - 60) 
+			teardrop(r=threaded_rod_diameter/2,h=vertex_end_major_d+2);
+		
+		//this way up
 		translate([31+18.5,20-9,vfvertex_height]) linear_extrude(file = "this-way-up.dxf", layer = "0",
   height = 2, center = true, convexity = 10, twist = -fanrot);
 		translate([31+18.5,20-9,0]) linear_extrude(file = "this-way-up.dxf", layer = "0",
   height = 2, center = true, convexity = 10, twist = -fanrot);
-		}else{
-			translate([31+18.5+15,20-9+16.5,vfvertex_height]) rotate([0,0,30+90]) linear_extrude(file = "this-way-up.dxf", layer = "0",
-  height = 2, center = true, convexity = 10, twist = -fanrot);
-		translate([31+18.5+15,20-9+16.5,0]) rotate([0,0,30+90]) linear_extrude(file = "this-way-up.dxf", layer = "0",
-  height = 2, center = true, convexity = 10, twist = -fanrot);
-		}
 	}
 }
 
