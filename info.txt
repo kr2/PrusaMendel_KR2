@@ -1,0 +1,11 @@
+sources:
+
+https://github.com/GregFrost/PrusaMendel
+https://github.com/prusajr/PrusaMendel
+
+
+x-carriage:
+http://www.thingiverse.com/thing:10885
+
+belt tensioner :
+http://www.thingiverse.com/thing:13479
