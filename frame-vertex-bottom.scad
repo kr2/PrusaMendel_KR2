@@ -56,7 +56,7 @@ hole_flat_radius=8.5; // flat surface around holes.
 foot_depth=26.25; // length of the foot
 end_round_translation=vertex_horizontal_hole_offset-hole_flat_radius;
 
-base_angle = 67; // angle at the base of the triangle  //67
+base_angle = 67; // angle at the base of the triangle  
 
 
 module vertex_bottom()
@@ -98,7 +98,7 @@ module vertex_bottom()
 			// top end ovall
 			rotate(60)
 			translate([hole_separation,end_round_translation-2*end_round_translation,0])
-			rotate(base_angle - 60) 
+			  rotate(base_angle - 60) 
 			scale([1,(vertex_end_minor_d+2*end_round_translation)/vertex_end_major_d,1])
 				cylinder(r=vertex_end_major_d/2,h=vfvertex_height); 
 
@@ -158,9 +158,9 @@ module vertex_bottom()
 		
 		//this way up
 		translate([31+18.5,20-9,vfvertex_height]) linear_extrude(file = "this-way-up.dxf", layer = "0",
-  height = 2, center = true, convexity = 10, twist = -fanrot);
+  height = 2, center = true, convexity = 10, twist = 0);
 		translate([31+18.5,20-9,0]) linear_extrude(file = "this-way-up.dxf", layer = "0",
-  height = 2, center = true, convexity = 10, twist = -fanrot);
+  height = 2, center = true, convexity = 10, twist = 0);
 	}
 }
 
