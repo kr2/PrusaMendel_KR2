@@ -1,6 +1,6 @@
 //Parametric Prusa Y-axis belt tensioner with ram by triffid_hunter is licensed under the Attribution - Share Alike - Creative Commons license.
 
-belt_pitch = 5;
+belt_pitch = 2.5;
 belt_width = 5.6;
 belt_height = 3.8;
 
@@ -20,7 +20,10 @@ extrusion_width = 0.4;
 clamp_height = 3.5;
 belt_depth = 2;
 
+
 ram_height = 7;
+
+xLength = wall * 2 + m3_diameter;
 
 module clamp(h=10) {
 	translate([-wall - m3_radius, 0, 0])
@@ -51,9 +54,12 @@ module clamp_base() {
 module clamp_top() {
 	difference() {
 		clamp(clamp_height);
-		translate([ - belt_pitch / 3.8, -belt_width / 2, wall - 1]) cube([belt_pitch / 1.9, belt_width, 5]);
-		translate([- belt_pitch / 3.8 + belt_pitch, -belt_width / 2, wall - 1]) cube([belt_pitch / 1.9, belt_width, 5]);
-		translate([- belt_pitch / 3.8 - belt_pitch, -belt_width / 2, wall - 1]) cube([belt_pitch / 1.9, belt_width, 5]);
+		
+
+		for (i=[-belt_pitch/4-xLength/2:belt_pitch:xLength/2]) {
+			translate([ i, -belt_width / 2, wall - 1]) 
+			#cube([belt_pitch / 1.9, belt_width, 5]);
+		}
 	}
 }
 
