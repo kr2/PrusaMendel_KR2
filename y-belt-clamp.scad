@@ -58,7 +58,7 @@ module clamp_top() {
 
 		for (i=[-belt_pitch/4-xLength/2:belt_pitch:xLength/2]) {
 			translate([ i, -belt_width / 2, wall - 1]) 
-			#cube([belt_pitch / 1.9, belt_width, 5]);
+			cube([belt_pitch / 1.9, belt_width, 5]);
 		}
 	}
 }
@@ -82,8 +82,11 @@ module ram() {
 	}
 }
 
-clamp_base();
-translate([wall * 2 + m3_diameter + 2, 0, 0]) clamp_top();
-translate([-wall * 2 - m3_diameter - 2, 0, 0]) clamp_trap();
-translate([wall * 4 + m3_diameter * 2 + 3, -belt_width, 0]) ram();
-translate([wall * 4 + m3_diameter * 2 + 3, belt_width, 0]) ram();
+module y_clamp_print() {
+	clamp_base();
+	translate([wall * 2 + m3_diameter + 2, 0, 0]) clamp_top();
+	translate([-wall * 2 - m3_diameter - 2, 0, 0]) clamp_trap();
+	translate([wall * 4 + m3_diameter * 2 + 3, -belt_width, 0]) ram();
+	translate([wall * 4 + m3_diameter * 2 + 3, belt_width, 0]) ram();
+}
+y_clamp_print();
