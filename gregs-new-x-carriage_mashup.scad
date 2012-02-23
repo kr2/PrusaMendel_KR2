@@ -22,10 +22,10 @@ belt_clamp_hole_separation=10;
 belt_clamp_height=m3_diameter+2*belt_clamp_thickness;
 belt_clamp_length=belt_clamp_hole_separation+m3_diameter+2*belt_clamp_thickness;
 
-belt_width=6;
+belt_width=6.25;
 belt_thickness=1.5; 
 tooth_height=1;
-tooth_spacing=2;
+tooth_spacing=2.5;
 
 key_w=4;
 key_l=6;
@@ -36,21 +36,26 @@ belt_clamp_channel_height=belt_thickness+tooth_height+belt_clamp_thickness*2;
 
 echo ("belt_clamp_width+0.75",belt_clamp_width+0.75);
 
-rotate(45)
-for (i=[-1,1])
-translate([-5+((i==1)?0:-4),i*(belt_clamp_width/2+4),0])
-belt_clamp(i);
+module gregs_x_carriage_print() {
+	
+	rotate(45)
+	for (i=[-1,1])
+	translate([-5+((i==1)?0:-4),i*(belt_clamp_width/2+4),0])
+	belt_clamp(i);
 
-translate([10,3,0])
-rotate(-45)
-belt_clamp_channel();
+	translate([10,3,0])
+	rotate(-45)
+	belt_clamp_channel();
 
-%cube([120,80,1],true);
+	//%cube([120,80,1],true);
 
-gregs_x_carriage();
+	gregs_x_carriage();
 
-translate([0,17,0])
-ram();
+	translate([0,16,0])
+	ram();
+}
+gregs_x_carriage_print();
+
 
 module gregs_x_carriage(with_fanmount=true) 
 {
