@@ -145,7 +145,7 @@ module vertex_top()
 					vertex_horizontal_hole_offset,
 					vfvertex_height/2])
 		rotate(turn_angle) 
-			#teardrop(r=threaded_rod_diameter/2,h=vertex_end_major_d+2);
+			teardrop(r=threaded_rod_diameter/2,h=vertex_end_major_d+2);
 
 		//triangle top holes
 		rotate(60)
@@ -153,7 +153,7 @@ module vertex_top()
 					vertex_horizontal_hole_offset-2*1*vertex_horizontal_hole_offset,
 					vfvertex_height/2]) 
 		rotate(-turn_angle) 
-			#teardrop(r=threaded_rod_diameter/2,h=vertex_end_major_d+2);
+			teardrop(r=threaded_rod_diameter/2,h=vertex_end_major_d+2);
 
 		translate([31+18.5+15,20-9+16.5,vfvertex_height]) rotate([0,0,30+90]) linear_extrude(file = "this-way-up.dxf", layer = "0",
   height = 2, center = true, convexity = 10, twist = 0);

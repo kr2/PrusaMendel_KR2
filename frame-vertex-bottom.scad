@@ -90,7 +90,7 @@ module vertex_bottom()
 
 	edge_offset = abs( vertex_end_major_d/2 - (cos(base_angle-60)*vertex_end_major_d/2 - sin(base_angle-60)*hole_flat_radius)); // x dir offset of the rotated box
 //	translate([-hole_separation-vertex_end_major_d/2,-vertex_horizontal_hole_offset,-vfvertex_height/2])
-//	translate([-18.5,9,0])
+	translate([-18.5,9,0])
 	difference ()
 	{
 		union ()
