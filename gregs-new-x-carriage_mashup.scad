@@ -43,20 +43,26 @@ echo ("belt_clamp_width+0.75",belt_clamp_width+0.75);
 
 module gregs_x_carriage_print() {
 	
-	rotate(45)
-	for (i=[-1,1])
-	translate([-5+((i==1)?0:-4),i*(belt_clamp_width/2+4),0])
-	belt_clamp(i);
+	translate([-10, -9, 0]) 
+	rotate(a=-35,v=[0,0,1]) 
+	belt_clamp(-1);
+	translate([10, -9, 0]) 
+	rotate(a=-90-50,v=[0,0,1]) 
+	belt_clamp(-1);
 
-	translate([10,3,0])
-	rotate(-45)
+	translate([9,8,0])
+	rotate(125)
+	belt_clamp_channel();
+
+	translate([-9,8,0])
+	rotate(55)
 	belt_clamp_channel();
 
 	//%cube([120,80,1],true);
 
 	gregs_x_carriage();
 
-	translate([0,16,0])
+	
 	ram();
 }
 gregs_x_carriage_print();
