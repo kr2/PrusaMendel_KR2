@@ -860,19 +860,3 @@ module geeksbase_holes ()
 
 	//cylinder(r=m4_diameter/2-0.5/* tight */,h=wade_block_depth+2,center=true); 
 }
-
-*translate([0,
-			idler_mounting_hole_up+motor_mount_translation[1],
-			wade_block_depth/2+idler_mounting_hole_across*idle])
-		rotate([0,90,0])
-		{
-			rotate([0,0,30])
-			{
-				translate([0,0,-1])
-				cylinder(r=m3_diameter/2,h=wade_block_depth+6,$fn=6);	
-				translate([0,0,wade_block_width-idler_nut_trap_depth])
-				cylinder(r=m3_nut_diameter/2,h=idler_nut_thickness,$fn=6);	
-			}
-			translate([0,10/2,wade_block_width-idler_nut_trap_depth+idler_nut_thickness/2])
-			cube([m3_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
-		}
