@@ -90,6 +90,10 @@ module gregs_x_carriage(with_fanmount=true)
 				[25,holder_separation/2],
 				[25,-holder_separation/2],
 				lm8uu_holder_width/2,lm8uu_holder_width/2,12,12);
+			barbell (
+				[-25,holder_separation/2],
+				[-25,-holder_separation/2],
+				lm8uu_holder_width/2,lm8uu_holder_width/2,12,12);
 		
 			square([40,50],true);				
 
