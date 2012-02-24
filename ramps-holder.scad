@@ -36,7 +36,7 @@ module ramps_holder(hole_offset=0,endstop_width=10,with_foot=false){
 			if (with_foot)
 			{
 				translate([-screw_hole_spacing+4,-foot_height,0])
-				#cube([4, foot_height+1, endstop_width]);
+				cube([4, foot_height+1, endstop_width]);
 				translate([-screw_hole_spacing+4+3,-20,0])
 				difference()
 				{

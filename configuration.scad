@@ -1,6 +1,6 @@
 // PRUSA Mendel  
 // Configuration file
-// GNU GPL v3
+// GNU GPL v2
 // Josef Průša
 // josefprusa@me.com
 // prusadjs.cz
@@ -15,16 +15,17 @@
 
 include <metric.scad>;
 
+// Uncomment for imperial settings
+// IMPERIAL IMPERIAL IMPERIAL IMPERIAL IMPERIAL IMPERIAL IMPERIAL 
+
+//include <sae.scad>;
+
 // CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM CUSTOM
 
 thin_wall = 3;
 
-
-// Linear bearing version
+// LM8UU
 linear = false;
-// set false for LM-8UU, true for LM-E-8UU (ignore if linear is set to false)
-lme8uu = false;
-
 
 
 // CHANGE ONLY THE STUFF YOU KNOW
@@ -34,8 +35,8 @@ lme8uu = false;
 
 // threaded_rod_diameter = 0;
 // threaded_rod_diameter_horizontal = 0;
-// smooth_bar_diameter = 0;
-// smooth_bar_diameter_horizontal = 0;
+// smooth_bar_díameter = 0;
+// smooth_bar_díameter_horizontal = 0;
 
 // Nuts and bolts
 
@@ -50,7 +51,7 @@ lme8uu = false;
 
 // Bushing holder
 
-// bushing_core_diameter = smooth_bar_diameter;
+// bushing_core_diameter = smooth_bar_díameter;
 // bushing_material_thickness = 0;
 
 

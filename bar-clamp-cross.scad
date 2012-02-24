@@ -21,7 +21,7 @@ module barclampCross(a=45) {
 	axe_dist = 5;
 	slot_width=5;
  
- 	steps = 8;
+ 	steps = 15;
 
  	translate([0, 0, clamp_height/2]) 
  	
