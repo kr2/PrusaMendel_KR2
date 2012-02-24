@@ -34,6 +34,11 @@ belt_allowance=1;
 
 belt_clamp_channel_height=belt_thickness+tooth_height+belt_clamp_thickness*2;
 
+thickerRing_height = 6;
+thickerRing_innerR = 21;
+
+OS = 0.01;
+
 echo ("belt_clamp_width+0.75",belt_clamp_width+0.75);
 
 module gregs_x_carriage_print() {
@@ -119,26 +124,26 @@ module gregs_x_carriage(with_fanmount=true)
 
 			// Thicker bit around the big hole.
 
-difference() 
-{
-cylinder(r=25+m4_diameter,h=6);
+			difference() 
+			{
+				cylinder(r=25+m4_diameter,h=thickerRing_height);
 
 
-translate([holder_separation-4,-lm8uu_holder_length+3.5,-1])
-cube([lm8uu_holder_width,lm8uu_holder_length/2,8]);
+				translate([holder_separation-4,-lm8uu_holder_length+3.5,-1])
+				cube([lm8uu_holder_width,lm8uu_holder_length/2,thickerRing_height+2]);
 
-translate([-holder_separation-18,-lm8uu_holder_length+3.5,-1])
-cube([lm8uu_holder_width,lm8uu_holder_length/2,8]);
+				translate([-holder_separation-18,-lm8uu_holder_length+3.5,-1])
+				cube([lm8uu_holder_width,lm8uu_holder_length/2,thickerRing_height+2]);
 
-translate([holder_separation-4,lm8uu_holder_length-19,-1])
-cube([lm8uu_holder_width,lm8uu_holder_length/2,8]);
+				translate([holder_separation-4,lm8uu_holder_length-19,-1])
+				cube([lm8uu_holder_width,lm8uu_holder_length/2,thickerRing_height+2]);
 
-translate([-holder_separation-18,lm8uu_holder_length-19,-1])
-cube([lm8uu_holder_width,lm8uu_holder_length/2,8]);
+				translate([-holder_separation-18,lm8uu_holder_length-19,-1])
+				cube([lm8uu_holder_width,lm8uu_holder_length/2,thickerRing_height+2]);
 
-*translate([-holder_separation-lm8uu_holder_width/2,-lm8uu_holder_length/2,-1])
-cube([lm8uu_holder_width,lm8uu_holder_length,8]);
-}
+				*translate([-holder_separation-lm8uu_holder_width/2,-lm8uu_holder_length/2,-1])
+				cube([lm8uu_holder_width,lm8uu_holder_length,thickerRing_height]);
+			}
 		}
 
 		translate([25+13.5+1,(lm8uu_holder_length*0.7+holder_separation/2)])
@@ -162,7 +167,11 @@ cube([lm8uu_holder_width,lm8uu_holder_length,8]);
 			cylinder(r=ehole_r,h=lm8uu_holder_height+2,center=true,$fn=16);
 		}
 */
-                    cylinder(r=21,h=lm8uu_holder_height+2,center=true,$fn=16);
+		translate([0, 0, -OS]) 
+       cylinder(r=thickerRing_innerR,h=thickerRing_height+2*OS,center=false,$fn=16);
+
+        translate([0, 0, thickerRing_height]) 
+        cylinder(r1=thickerRing_innerR, r2 = thickerRing_innerR*0.75, h=thickerRing_height, center=false);
 
 		// The extruder mounting holes.
 for (i=[0:1]) 
@@ -392,7 +401,7 @@ module fan_mount()
 		union ()
 		{
 			translate([0,0,fan_support_block/4])
-#			cube([fan_hole_separation+fan_support_block,fan_support_thickness,
+			cube([fan_hole_separation+fan_support_block,fan_support_thickness,
 				fan_support_block/2],center=true);
 			
 			for (i=[-1,1])
@@ -427,15 +436,14 @@ module fan_mount_holes()
 			translate([0,0,0])
 			rotate([90,0,0])
 			rotate([0,0,180/6])
-			cylinder(r=(m3_nut_diameter-0.5)/2,h=fan_trap_width,
-				center=true,$fn=6);
+			cylinder(r=(m3_nut_diameter)/2,h=fan_trap_width,center=true,$fn=6);
 
 			translate([0,0,-(fan_hole_height+1)/2])
-			cube([(m3_nut_diameter-0.5)*cos(30),fan_trap_width,
+			cube([(m3_nut_diameter)*cos(30),fan_trap_width,
 				fan_hole_height+1],center=true);
 
-			translate([0,0,-fan_hole_height])
-			cube([(m3_nut_diameter-0.5)*cos(30)+1,fan_trap_width+1,
+			*translate([0,0,-fan_hole_height])
+			cube([(m3_nut_diameter)*cos(30)+1,fan_trap_width+1,
 				0.8],center=true);
 		}
 	}
