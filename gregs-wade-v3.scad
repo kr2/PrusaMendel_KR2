@@ -545,7 +545,7 @@ module wadeidler()
 
 			//Filament Guide.
 			translate([guide_height/2+idler_height/2-1,idler_long_side/2-guide_length/2,0])
-#			cube([guide_height+1,guide_length,8],center=true);
+			cube([guide_height+1,guide_length,8],center=true);
 			}
 
 			// The fulcrum Hinge
@@ -561,10 +561,10 @@ module wadeidler()
 		//Filament Path	
 		translate(idler_axis+[2+guide_height,+idler_long_side-idler_long_bottom-guide_length/2,0])
 		{
-#		cube([7,guide_length+2,3.5],center=true);
+		cube([7,guide_length+2,3.5],center=true);
 		translate([-7/2,0,0])
 		rotate([90,0,0])
-#		cylinder(h=guide_length+4,r=3.5/2,center=true,$fn=16);
+		cylinder(h=guide_length+4,r=3.5/2,center=true,$fn=16);
 		}
 
 		//Back of idler.
@@ -824,11 +824,55 @@ module geeksbase_holes ()
 
 	// Mounting holes to affix the extruder into the recess.
 	translate([5,0,min(extruder_recess_h/2, base_thickness-2)])
-	rotate([-90,0,0])
-	cylinder(r=m3_diameter/2-0.5,/*tight*/,h=wade_block_depth+2,center=true); 
+	rotate([-90,0,0]){
+		cylinder(r=m3_diameter/2,h=wade_block_depth+2,center=true,$fn=16); 
+		rotate([0,0,30])
+		{
+			translate([0,0,wade_block_width*2/6])
+			cylinder(r=m3_nut_diameter/2-0.1/* tight */,h=idler_nut_thickness,$fn=6);	
+			//top
+			translate([0,0,-wade_block_width*2/6-idler_nut_thickness])
+			#cylinder(r=m3_nut_diameter/2,h=idler_nut_thickness,$fn=6);
+		}
+		translate([0,10/2,wade_block_width*2/6+idler_nut_thickness/2])
+			cube([m3_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
+		translate([0,10/2,-(wade_block_width*2/6+idler_nut_thickness/2)])
+			cube([m3_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
+	}
+	
 	translate([-5,0,min(extruder_recess_h/2, base_thickness-2)])
-	rotate([-90,0,0])
-	cylinder(r=m3_diameter/2-0.5,/*tight*/,h=wade_block_depth+2,center=true); 
+	rotate([-90,0,0]){
+		cylinder(r=m3_diameter/2-0.1/* tight */,h=wade_block_depth+2,center=true,$fn=16); 
+		rotate([0,0,30])
+		{
+			translate([0,0,wade_block_width*2/6])
+			cylinder(r=m3_nut_diameter/2,h=idler_nut_thickness,$fn=6);	
+			//top
+			translate([0,0,-wade_block_width*2/6-idler_nut_thickness])
+			#cylinder(r=m3_nut_diameter/2,h=idler_nut_thickness,$fn=6);
+		}
+		translate([0,10/2,wade_block_width*2/6+idler_nut_thickness/2])
+			cube([m3_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
+		translate([0,10/2,-(wade_block_width*2/6+idler_nut_thickness/2)])
+			cube([m3_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
+	}
+	
 
 	//cylinder(r=m4_diameter/2-0.5/* tight */,h=wade_block_depth+2,center=true); 
 }
+
+*translate([0,
+			idler_mounting_hole_up+motor_mount_translation[1],
+			wade_block_depth/2+idler_mounting_hole_across*idle])
+		rotate([0,90,0])
+		{
+			rotate([0,0,30])
+			{
+				translate([0,0,-1])
+				cylinder(r=m3_diameter/2,h=wade_block_depth+6,$fn=6);	
+				translate([0,0,wade_block_width-idler_nut_trap_depth])
+				cylinder(r=m3_nut_diameter/2,h=idler_nut_thickness,$fn=6);	
+			}
+			translate([0,10/2,wade_block_width-idler_nut_trap_depth+idler_nut_thickness/2])
+			cube([m3_nut_diameter*cos(30),10,idler_nut_thickness],center=true);
+		}
