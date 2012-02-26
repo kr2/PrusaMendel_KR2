@@ -24,7 +24,6 @@ module origclamp(){
     translate([17, 17, 7.5]) rotate([90, 0, 0]) #cylinder(h =20, r = m3_diameter/2, $fn = 10);
   }
 }
-
 module z_rodStab() {
     
   difference()
@@ -46,3 +45,4 @@ module z_rodStab() {
   }
 
 }
+z_rodStab();

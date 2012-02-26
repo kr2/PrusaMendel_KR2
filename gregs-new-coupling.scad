@@ -67,7 +67,7 @@ module coupling()
 	difference ()
 	{
 		translate([0,0,surround_height])
-#		render()
+		render()
 		intersection ()
 		{
 			translate([0,0,-3])

@@ -83,7 +83,7 @@ module ramps_holder(hole_offset=0,endstop_width=10,with_foot=false){
 		rotate([-90, 0, 0]) 
 		{
 			cylinder(h=outer_diameter+2, r = m3_diameter/2, $fn = 10);
-			cylinder(h=3, r = m3_nut_diameter/2, $fn = 6);
+			#cylinder(h=3, r = m3_nut_diameter/2, $fn = 6);
 		}
 	}
 }
