@@ -61,8 +61,8 @@ module zmotormount()
 		
 		translate(v=[16,7,0]) rotate(a=[0,90,0]) polyhole(m3_diameter,15);
 		translate(v=[16,-7,0]) rotate(a=[0,90,0]) polyhole(m3_diameter,15);
-		translate(v=[0,7,0]) rotate(a=[0,90,0]) rotate(a=[0,0,30]) nut(m3_nut_diameter, 24, true);
-		translate(v=[0,-7,0]) rotate(a=[0,90,0]) rotate(a=[0,0,30]) nut(m3_nut_diameter, 24, true);
+		translate(v=[0,7,0]) rotate(a=[0,90,0]) rotate(a=[0,0,30]) cylinder(r=m3_nut_diameter/2, h=24, $fn=6, center=false);
+		translate(v=[0,-7,0]) rotate(a=[0,90,0]) rotate(a=[0,0,30]) cylinder(r=m3_nut_diameter/2, h=24, $fn=6, center=false);
 		
 	}
 }

@@ -81,7 +81,7 @@ module endstop()
 		cube([18,opening_size,endstop_clamp_height+2]);
 
 		translate([0,0,-1]) 
-		cylinder(h=hole_y_spacing+m3_nut_diameter+2*screw_support_z++2,r=m8_diameter/2,$fn=18);
+		cylinder(h=hole_y_spacing+m3_nut_diameter+2*screw_support_z+2,r=m8_diameter/2,$fn=18);
 
 		for(i=[-1,1])
 		translate([0,0,endstop_height/2])
