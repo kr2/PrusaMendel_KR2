@@ -108,7 +108,7 @@ module z_stop()
 
 module positioned_motor_mount()
 {
-	difference ()
+	#difference ()
 	{
 		translate(motor_mount_translation)
 		union()

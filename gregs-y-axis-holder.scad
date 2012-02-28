@@ -30,7 +30,6 @@ module ring(r,w,h,center=false){
 		}
 	}
 }
-// +(m3_nut_diameter+genWallThicknes)*2 m3_nut_wallDist
 
 module nutFall() {
 	translate([-cos(30)*(m3_nut_diameter/2+genWallThicknes*2), 0, 0])  rotate(a=30,v=[0,0,1]) 
