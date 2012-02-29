@@ -12,7 +12,7 @@ OS = 0.01;
 
 cabelTie_height = 1.75;
 minDist = 0.5;
-genWallThicknes = 1;
+genWallThicknes = 1.33;
 
 //m3_nut_diameter
 
