@@ -156,7 +156,7 @@ module xend_side(closed_end=true,curved_sides=false,endstop_mount=false)
 		if (!closed_end)
 		{
 			translate([0,xend_length-1.5-solid_end_width,0])
-			cylinder(r=3/2, h=xend_height+2,$fn=10,center=true);
+			cylinder(r=m3_diameter/2, h=xend_height+2,$fn=12,center=true);
 		}
 	}
 }
@@ -268,4 +268,4 @@ module xendcorners(dia1, dia2, dia3, dia4, height=0)
 }
 //xendcorners(5,5,5,5,0);
 
-xend(endstop_mount=true,closed_end=true,curved_sides=true,override_height=65,luu_version=true);
+xend(endstop_mount=true,closed_end=false,curved_sides=true,override_height=65,luu_version=true);
