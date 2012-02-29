@@ -38,7 +38,7 @@ assign (height=(override_height>0)?override_height:luu_version?luu_height+4+1:65
 			translate([0,0,0]) cylinder(h=height,r=10,$fn=60);
 		}
 		//main axis
-		translate([0,0,-2]) cylinder(h=height+5, r=7.7, $fn=50);
+		translate([0,0,-2]) cylinder(h=height+5, r=8, $fn=50);
 		//main cut
 		translate([10,0,height/2]) cube([20,14,height+5],center=true);
 		//smooth entry cut
