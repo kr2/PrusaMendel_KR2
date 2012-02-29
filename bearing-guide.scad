@@ -33,7 +33,7 @@ module bearing_guide(inner_r=2)
 				r2=bearing_inner/2+single_layer_width+tolerance,
 				h=slope_thickness);
 		}
-		translate([0,0,-1])
+		#translate([0,0,-1])
 		cylinder(r=bearing_inner/2-wall_descent,h=edge_thickness+2);
 
 		translate([0,0,edge_thickness])
