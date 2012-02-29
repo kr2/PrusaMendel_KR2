@@ -19,13 +19,13 @@ smooth_bar_diameter_horizontal = 8.5;
 // Nuts and bolts
 
 m8_diameter = 8.9;
-m8_nut_diameter = 15.1;
+m8_nut_diameter = 15.3;
 
 m4_diameter = 4.5;
 m4_nut_diameter = 9;
 
 m3_diameter = 3.6;
-m3_nut_diameter = 6.15;
+m3_nut_diameter = 6.25;
 m3_nut_heigth = 2.3;
 m3_nut_wallDist = cos(30)*m3_nut_diameter;
 m3_nut_diameter_horizontal = 6.1;
