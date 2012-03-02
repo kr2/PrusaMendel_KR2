@@ -10,7 +10,7 @@ include <configuration.scad>
  * @category Printed
  */
 
-m8_nut_height=7; 
+m8_nut_height=7.5; 
 washer_diameter=19.5;
 washer_thickness=1.6;
 max_adjustment=1.2;
