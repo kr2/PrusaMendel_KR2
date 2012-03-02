@@ -22,7 +22,7 @@ xendidler(closed_end=false,curved_sides=true);
 
 translate([41, 36, 0]) 
 rotate(a=180,v=[0,0,1]) 
-xendmotor(endstop_mount=true,curved_sides=true,closed_end=true,luu_version=false,adjustable_z_stop=true);
+xendmotor(endstop_mount=false,curved_sides=true,closed_end=true,luu_version=false,adjustable_z_stop=true);
 
 translate([-36, -35, 0]) 
 gregs_x_carriage_print();
