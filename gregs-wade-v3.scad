@@ -620,8 +620,9 @@ module wadeidler()
 			rotate([0,90,0])
 			{
 				cylinder(r=idler_mounting_hole_diameter/2,h=idler_height+2,$fn=16);
-				translate([0,idler_mounting_hole_elongation,0])
-				cylinder(r=idler_mounting_hole_diameter/2,h=idler_height+2,$fn=16);
+				translate([-idler_mounting_hole_diameter/2,0,0])
+					cube(size=[idler_mounting_hole_diameter, 10, idler_height+2], center=false);
+					//cylinder(r=idler_mounting_hole_diameter/2,h=idler_height+2,$fn=16);
 				translate([-idler_mounting_hole_diameter/2,0,0])
 				cube([idler_mounting_hole_diameter,idler_mounting_hole_elongation,
 					idler_height+2]);
